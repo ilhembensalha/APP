@@ -44,13 +44,13 @@ class _pageState extends State<page> {
    // _seriesBarData = List<charts.Series<Transactions, String>>() ;
     _seriesBarData.add(
       charts.Series(
-        domainFn: (Transactions sales, _) => sales.prix.toString(),
-        measureFn: (Transactions sales, _) =>sales.id_cat,
+        domainFn: (Transactions sales, _) => sales.typeTrans.toString(),
+        measureFn: (Transactions sales, _) =>sales.prix,
         colorFn: (Transactions sales, _) =>
             charts.ColorUtil.fromDartColor(Colors.primaries[math.Random().nextInt(Colors.primaries.length)]),
         id: 'Transactions',
         data: mydata,
-       labelAccessorFn: (Transactions row, _) => "${row.id_cat}",
+       labelAccessorFn: (Transactions row, _) => "${row.prix}",
       ),
     );
   }
