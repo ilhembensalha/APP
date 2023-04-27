@@ -45,8 +45,19 @@ class _NavState extends State<Nav> {
     return Scaffold(
      /* drawer: const drawer.NavigationDrawer(),*/
       appBar: AppBar(
-        title: Text('Budget tracking app'),
+        title: Text('Budget Tracking App'),
          actions: <Widget>[
+           IconButton(
+     
+      icon: Icon(
+        Icons.notification_add_sharp,
+        color: Colors.white,
+      ),
+      onPressed:  ()  {
+              
+        // do something
+      },
+    ),
           IconButton(
      
       icon: Icon(

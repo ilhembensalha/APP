@@ -3,6 +3,7 @@ import 'package:login_with_signup/DatabaseHandler/DbHelper.dart';
 import 'package:login_with_signup/Screens/CategoriePage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../Comm/comHelper.dart';
 import 'HomeForm.dart';
 import 'LoginForm.dart';
 import 'homePage.dart';
@@ -99,11 +100,24 @@ class  _ObjectifPageState extends State<ObjectifPage>{
                 onPressed: () async {
                   // Save new journal
                   if (id == null) {
+                    
+    if (_sommeController.text.isEmpty) {
+      alertDialog(context, "Please Enter name");
+    } else if (_sommeController.text.isEmpty) {
+      alertDialog(context, "Please Enter somme");
+    } else {
                     await _addItem();
+    }
                   }
 
                   if (id != null) {
+         if (_nameController.text.isEmpty) {
+      alertDialog(context, "Please Enter name");
+    } else if (_sommeController.text.isEmpty) {
+      alertDialog(context, "Please Enter somme");
+    } else {
                     await _updateItem(id);
+    }
                   }
 
                   // Clear the text fields
@@ -112,6 +126,7 @@ class  _ObjectifPageState extends State<ObjectifPage>{
                  
 
                   // Close the bottom sheet
+                  
                   Navigator.of(context).pop();
                 },
                 child: Text(id == null ? 'Create New' : 'Update'),

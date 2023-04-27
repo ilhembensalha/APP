@@ -19,15 +19,18 @@ class _TaskHomePageState extends State<TaskHomePage> {
   List<Transactions> mydata;
   
   List<Map<String, dynamic>> _journals = [];
+     List<Map<String, dynamic>> _id_caController  = [] ;
   
    DbHelper dbHelper;
    
   // This function is used to fetch all data from the database
   void _refreshJournals() async {
     final data = await dbHelper.getTran();
+     final cat = await  dbHelper.getCat();
  
     setState(() {
       _journals = data;
+          _id_caController = cat;
     });
   }
   @override
@@ -47,7 +50,9 @@ class _TaskHomePageState extends State<TaskHomePage> {
             charts.ColorUtil.fromDartColor(Colors.primaries[math.Random().nextInt(Colors.primaries.length)]),
         id: 'transactions',
         data: mydata,
-        labelAccessorFn: (Transactions row, _) => "${row.id_cat}",
+        labelAccessorFn: (Transactions row, _) => "${_id_caController.map((category) => category['id_cat'] == row.id_cat?
+ category['name'] : null).toList().firstWhere((element) => element != null, orElse: () => Text('err'))}",
+     
       ),
     );
   }
@@ -95,7 +100,7 @@ Future<List<Map<String, dynamic>>> getAll() async {
           child: Column(
             children: <Widget>[
               Text(
-                'Time spent on daily tasks',
+                'Transactions ',
                 style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
               ),
               SizedBox(

@@ -5,6 +5,7 @@ import 'package:login_with_signup/Screens/Objectif.dart';
 import 'package:login_with_signup/Screens/page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:login_with_signup/Screens/navigation.dart' as drawer;
+import '../Comm/comHelper.dart';
 import 'CategoriePage.dart';
 import 'HomeForm.dart';
 import 'LoginForm.dart';
@@ -182,7 +183,7 @@ child: Text(category['name']),
                 children: [
                   Text('Type'),
                    DropdownButton(
-                value: _typeTransController,
+                value: _typeTransController  ,
                 icon: Icon(Icons.keyboard_arrow_down),
                 items: items.map((items) {
                   return DropdownMenuItem(value: items, child: Text(items));
@@ -217,12 +218,46 @@ child: Text(category['name']),
                 onPressed: () async {
                   // Save new journal
                   if (id == null) {
+        if (_nameController.text.isEmpty) {
+      alertDialog(context, "Please Enter name");
+    } else if (_descriptionController.text.isEmpty) {
+      alertDialog(context, "Please Enter description");
+      
+    }  else if (_prixController.text.isEmpty) {
+      alertDialog(context, "Please Enter montant");
+      
+    }  else if (_typeTransController.text.isEmpty) {
+      alertDialog(context, "Please Enter type");
+      
+    }
+      else if (_catController.text.isEmpty) {
+      alertDialog(context, "Please Enter categorie");
+      
+    }else {
                     await _addItem();
-                  }
+       }
+          }
 
                   if (id != null) {
+                     if (_nameController.text.isEmpty) {
+      alertDialog(context, "Please Enter name");
+    } else if (_descriptionController.text.isEmpty) {
+      alertDialog(context, "Please Enter description");
+      
+    }  else if (_prixController.text.isEmpty) {
+      alertDialog(context, "Please Enter montant");
+      
+    } /* else if (_typeTransController.toString().isEmpty) {
+      alertDialog(context, "Please Enter type");
+      
+    }
+      else if (_catController.toString().isEmpty) {
+      alertDialog(context, "Please Enter categorie");
+      
+    }*/else {
                     await _updateItem(id);
-                  }
+     }
+      }
 
                   // Clear the text fields
                   _nameController.text = '';

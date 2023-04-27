@@ -3,6 +3,7 @@ import 'package:login_with_signup/DatabaseHandler/DbHelper.dart';
 import 'package:login_with_signup/Screens/Objectif.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../Comm/comHelper.dart';
 import 'HomeForm.dart';
 import 'LoginForm.dart';
 import 'homePage.dart';
@@ -104,12 +105,32 @@ class  _CategoriePageState extends State<CategoriePage>{
                 onPressed: () async {
                   // Save new journal
                   if (id == null) {
+       if (_nameController.text.isEmpty) {
+      alertDialog(context, "Please Enter name");
+    } else if (_descriptionController.text.isEmpty) {
+      alertDialog(context, "Please Enter description");
+      
+    }  else if (_typeController.text.isEmpty) {
+      alertDialog(context, "Please Enter type");
+      
+    }else {
                     await _addItem();
-                  }
+       }
+          }
 
                   if (id != null) {
+       if (_nameController.text.isEmpty) {
+      alertDialog(context, "Please Enter name");
+    } else if (_descriptionController.text.isEmpty) {
+      alertDialog(context, "Please Enter description");
+      
+    }  else if (_typeController.text.isEmpty) {
+      alertDialog(context, "Please Enter type");
+      
+    }else {
                     await _updateItem(id);
-                  }
+     }
+      }
 
                   // Clear the text fields
                   _nameController.text = '';
