@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:login_with_signup/DatabaseHandler/DbHelper.dart';
+import 'package:login_with_signup/Screens/NotificationPage.dart';
 import 'package:login_with_signup/Screens/Objectif.dart';
 import 'package:login_with_signup/Screens/page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -18,9 +20,11 @@ class HomePage extends StatefulWidget {
 
   @override
   _HomePageState createState() => _HomePageState();
+    void _showNotification() {}
 }
 
 class  _HomePageState extends State<HomePage>{
+   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
  DbHelper dbHelper;
   // All journals
   
@@ -28,6 +32,7 @@ class  _HomePageState extends State<HomePage>{
    List<Map<String, dynamic>> _id_caController  = [] ;
      Future<SharedPreferences> _pref = SharedPreferences.getInstance();
     String dropdownvalue = 'revenu ';
+      int _prix = 0;
 
   var items = [
     'revenu',
@@ -40,9 +45,31 @@ class  _HomePageState extends State<HomePage>{
     double _depense ;
     double _totaal ;
    var selectedCategory ;
+     Future onSelectNotification(String payload) async {
+    showDialog(
+      context: context,
+      builder: (_) {
+        return AlertDialog(
+          title: Text("Notification"),
+          content: Text("Payload : $payload"),
+        );
+      },
+    );
+  }
+     Future _showNotification() async {
+    var android = AndroidNotificationDetails(
+        'channel id', 'channel NAME', 'CHANNEL DESCRIPTION',
+        priority: Priority.high, importance: Importance.max);
+    var iOS = IOSNotificationDetails();
+    var platform = NotificationDetails(android: android, iOS: iOS);
+    await flutterLocalNotificationsPlugin.show(
+        0, 'Title', 'Body', platform,
+        payload: 'Custom_Sound');
+  }
    
   // This function is used to fetch all data from the database
   void _refreshJournals() async {
+
     final data = await dbHelper.getTran();
     final sum = await dbHelper.sumField();
     final dep = await dbHelper.moins();
@@ -69,6 +96,10 @@ class  _HomePageState extends State<HomePage>{
      _depense = 0 ;
       }
     });
+
+    if(_depense == _total){
+    _showNotification() ;
+    }
   }
    /*Future total() async {
       var total = (await dbHelper.getTotal())[0]["sum(prix)"];
@@ -89,18 +120,38 @@ class  _HomePageState extends State<HomePage>{
   String data = await dbHelper.getTotalMontant();
   print(data);
 }*/
+ void _increment() {
+    setState(() {
+      _prix++;
+    });
+  }
 
+  void _decrement() {
+    setState(() {
+      if (_prix > 0) {
+        _prix--;
+      }
+    });
+  }
 
   @override
   void initState() {
     super.initState();
         dbHelper = DbHelper();
+            var initializationSettingsAndroid =
+        AndroidInitializationSettings('app_icon');
+    var initializationSettingsIOS = IOSInitializationSettings();
+    var initializationSettings = InitializationSettings(
+        android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
+    flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+    flutterLocalNotificationsPlugin.initialize(initializationSettings,
+        onSelectNotification: onSelectNotification);
     _refreshJournals(); // Loading the diary when the app starts
   }
 
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
-  final TextEditingController _prixController = TextEditingController();
+  TextEditingController _prixController = TextEditingController();
   var _typeTransController ;
   var   _catController ;
    // ignore: non_constant_identifier_names
@@ -178,7 +229,33 @@ child: Text(category['name']),
                      const SizedBox(
                 height: 20,
               ),
-              Row(   
+
+              Column(
+  children: [
+     Text('Type :'),
+      
+      RadioListTile(
+          title: Text("depense"),
+          value: "depense", 
+          groupValue: _typeTransController, 
+          onChanged: (value){
+            setState(() {
+                _typeTransController = value.toString();
+            });
+          },
+      ),
+
+      RadioListTile(
+          title: Text("revenu"),
+          value: "revenu", 
+          groupValue: _typeTransController, 
+          onChanged: (value){
+            setState(() {
+                _typeTransController = value.toString();
+            });
+          },
+      ),]),
+           /*   Row(   
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Type'),
@@ -195,15 +272,40 @@ child: Text(category['name']),
                 },
               ),
                 ],
-              ),
+              ),*/
               const SizedBox(
                 height: 20,
-              ),TextField(
+              ),/*TextField(
                 controller: _prixController,
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(hintText: 'montant'),
 
-              ), 
+              ), */ Row(
+      children: [
+        ElevatedButton(
+          onPressed: _decrement,
+          child: Text('-'),
+        ),
+        SizedBox(width: 10),
+        Expanded(
+          child: TextField(
+            keyboardType: TextInputType.number,
+            textAlign: TextAlign.center,
+            controller: TextEditingController(text: _prix.toString()),
+            onChanged: (value) { 
+              setState(() {
+                _prix = int.tryParse(value) ?? 0;
+              });
+            },
+          ),
+        ),
+        SizedBox(width: 10),
+        ElevatedButton(
+          onPressed: _increment,
+          child: Text('+'),
+        ),
+      ],
+    ),
            
                const SizedBox(
                 height: 20,
@@ -223,15 +325,8 @@ child: Text(category['name']),
     } else if (_descriptionController.text.isEmpty) {
       alertDialog(context, "Please Enter description");
       
-    }  else if (_prixController.text.isEmpty) {
+    }  else if (_prix == null) {
       alertDialog(context, "Please Enter montant");
-      
-    }  else if (_typeTransController.text.isEmpty) {
-      alertDialog(context, "Please Enter type");
-      
-    }
-      else if (_catController.text.isEmpty) {
-      alertDialog(context, "Please Enter categorie");
       
     }else {
                     await _addItem();
@@ -247,14 +342,7 @@ child: Text(category['name']),
     }  else if (_prixController.text.isEmpty) {
       alertDialog(context, "Please Enter montant");
       
-    } /* else if (_typeTransController.toString().isEmpty) {
-      alertDialog(context, "Please Enter type");
-      
-    }
-      else if (_catController.toString().isEmpty) {
-      alertDialog(context, "Please Enter categorie");
-      
-    }*/else {
+    } else {
                     await _updateItem(id);
      }
       }
@@ -278,14 +366,14 @@ child: Text(category['name']),
 // Insert a new journal to the database
   Future<void> _addItem() async {
     await  dbHelper.createTran(
-        _nameController.text, _descriptionController.text,_prixController.text,_typeTransController,_catController );
+        _nameController.text, _descriptionController.text,_prix.toString(),_typeTransController,_catController );
     _refreshJournals();
   }
 
   // Update an existing journal
   Future<void> _updateItem(int id) async {
     await dbHelper.updateTran(
-        id,_nameController.text, _descriptionController.text,_prixController.text,_typeTransController,_catController );
+        id,_nameController.text, _descriptionController.text,_prix.toString(),_typeTransController,_catController );
     _refreshJournals();
   }
 
@@ -336,7 +424,7 @@ child: Text(category['name']),
   children: [
     Text(' Revenus'),
     Text('Depenses'),
-    Text('Total '),
+    Text('SoldesS '),
   ],
 ) ,
         Row(

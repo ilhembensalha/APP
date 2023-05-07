@@ -94,6 +94,22 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_local_notifications:
+    dependency: "direct main"
+    description:
+      name: flutter_local_notifications
+      sha256: "27854d92d880ac46e771a79c3998da7532003ebbbc2c02efc15cd36cb91de971"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.0.1+2"
+  flutter_local_notifications_platform_interface:
+    dependency: transitive
+    description:
+      name: flutter_local_notifications_platform_interface
+      sha256: "0c75bc78c2ec6182ecc667d0d984f438a59e25c11c562167f9031a1957c3e8bb"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0+1"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -357,6 +373,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.4.16"
+  timezone:
+    dependency: transitive
+    description:
+      name: timezone
+      sha256: f0697af725678a8e0c8dfb17ef282a0e26c25304b43ef3512618384da1ca7e4b
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.6.1"
   toast:
     dependency: "direct main"
     description:

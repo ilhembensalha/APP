@@ -7,22 +7,25 @@ INJECTED from C:\Users\bensa\OneDrive\Bureau\appbudget111\android\app\src\main\A
 MERGED from C:\Users\bensa\OneDrive\Bureau\appbudget111\android\app\src\main\AndroidManifest.xml:1:1-41:12
 MERGED from [:shared_preferences] C:\Users\bensa\OneDrive\Bureau\appbudget111\build\shared_preferences\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:sqflite] C:\Users\bensa\OneDrive\Bureau\appbudget111\build\sqflite\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
+MERGED from [:flutter_local_notifications] C:\Users\bensa\OneDrive\Bureau\appbudget111\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-25:12
 MERGED from [:path_provider] C:\Users\bensa\OneDrive\Bureau\appbudget111\build\path_provider\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.window:window-java:1.0.0-beta04] C:\Users\bensa\.gradle\caches\transforms-3\c377856ee62ad0ef14c0861a124e3f84\transformed\jetified-window-java-1.0.0-beta04\AndroidManifest.xml:17:1-23:12
 MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\bensa\.gradle\caches\transforms-3\bc6045cc4ccfd8464d87abc6c5778b89\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.media:media:1.1.0] C:\Users\bensa\.gradle\caches\transforms-3\14ad6d40be02b0f1c80a028849c44f34\transformed\media-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\bensa\.gradle\caches\transforms-3\0c46d66dd0777671c248c496b6f75318\transformed\fragment-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\bensa\.gradle\caches\transforms-3\032de68f91d2d212bfb49bd5a1a2a744\transformed\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\bensa\.gradle\caches\transforms-3\496a52e455efe1810033c2240cf1dd71\transformed\loader-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.activity:activity:1.0.0] C:\Users\bensa\.gradle\caches\transforms-3\3fa387c5c6fd86efc9518cf26a43ee16\transformed\jetified-activity-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.customview:customview:1.0.0] C:\Users\bensa\.gradle\caches\transforms-3\06069062a3781625f881552116ce1ad8\transformed\customview-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.core:core:1.6.0] C:\Users\bensa\.gradle\caches\transforms-3\f23b8912808535eaec6feba95b1242f9\transformed\core-1.6.0\AndroidManifest.xml:17:1-26:12
+MERGED from [com.jakewharton.threetenabp:threetenabp:1.2.3] C:\Users\bensa\.gradle\caches\transforms-3\83c495226b70fec09e7a1cc7c2e370c2\transformed\jetified-threetenabp-1.2.3\AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\bensa\.gradle\caches\transforms-3\79f181586ebbd4f57ba6237e9917dfa7\transformed\lifecycle-runtime-2.2.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\bensa\.gradle\caches\transforms-3\e325c78102199d435b8d31b844a2a8dc\transformed\jetified-savedstate-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\bensa\.gradle\caches\transforms-3\4779a44a52c8fabd1e75902a00efbd76\transformed\lifecycle-livedata-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\bensa\.gradle\caches\transforms-3\f5545cf3d503936457e210d057e1dfe9\transformed\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\bensa\.gradle\caches\transforms-3\e8f2d69cc13c87de30cfd3fafe94ebb5\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\bensa\.gradle\caches\transforms-3\01991162bf653514f6f03f5170ee0b2d\transformed\core-runtime-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\bensa\.gradle\caches\transforms-3\0c928071fb38cbd52f7c51f849739ea1\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\bensa\.gradle\caches\transforms-3\01991162bf653514f6f03f5170ee0b2d\transformed\core-runtime-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\bensa\.gradle\caches\transforms-3\97d57405cb102c38a50669c0384c7167\transformed\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\bensa\.gradle\caches\transforms-3\656a3bf9cd1f085c4cc1a3e61d841f93\transformed\jetified-annotation-experimental-1.1.0\AndroidManifest.xml:17:1-24:12
 INJECTED from C:\Users\bensa\OneDrive\Bureau\appbudget111\android\app\src\debug\AndroidManifest.xml:1:1-7:12
@@ -44,10 +47,14 @@ INJECTED from C:\Users\bensa\OneDrive\Bureau\appbudget111\android\app\src\debug\
 		ADDED from C:\Users\bensa\OneDrive\Bureau\appbudget111\android\app\src\main\AndroidManifest.xml:1:11-69
 application
 ADDED from C:\Users\bensa\OneDrive\Bureau\appbudget111\android\app\src\main\AndroidManifest.xml:3:4-40:19
+MERGED from [:flutter_local_notifications] C:\Users\bensa\OneDrive\Bureau\appbudget111\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:13:5-23:19
+MERGED from [:flutter_local_notifications] C:\Users\bensa\OneDrive\Bureau\appbudget111\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:13:5-23:19
 MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\bensa\.gradle\caches\transforms-3\bc6045cc4ccfd8464d87abc6c5778b89\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:24:5-31:19
 MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\bensa\.gradle\caches\transforms-3\bc6045cc4ccfd8464d87abc6c5778b89\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:24:5-31:19
 MERGED from [androidx.core:core:1.6.0] C:\Users\bensa\.gradle\caches\transforms-3\f23b8912808535eaec6feba95b1242f9\transformed\core-1.6.0\AndroidManifest.xml:24:5-89
 MERGED from [androidx.core:core:1.6.0] C:\Users\bensa\.gradle\caches\transforms-3\f23b8912808535eaec6feba95b1242f9\transformed\core-1.6.0\AndroidManifest.xml:24:5-89
+MERGED from [com.jakewharton.threetenabp:threetenabp:1.2.3] C:\Users\bensa\.gradle\caches\transforms-3\83c495226b70fec09e7a1cc7c2e370c2\transformed\jetified-threetenabp-1.2.3\AndroidManifest.xml:7:5-20
+MERGED from [com.jakewharton.threetenabp:threetenabp:1.2.3] C:\Users\bensa\.gradle\caches\transforms-3\83c495226b70fec09e7a1cc7c2e370c2\transformed\jetified-threetenabp-1.2.3\AndroidManifest.xml:7:5-20
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\bensa\.gradle\caches\transforms-3\0c928071fb38cbd52f7c51f849739ea1\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\bensa\.gradle\caches\transforms-3\0c928071fb38cbd52f7c51f849739ea1\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
 	android:appComponentFactory
@@ -106,12 +113,16 @@ MERGED from [:shared_preferences] C:\Users\bensa\OneDrive\Bureau\appbudget111\bu
 MERGED from [:shared_preferences] C:\Users\bensa\OneDrive\Bureau\appbudget111\build\shared_preferences\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:sqflite] C:\Users\bensa\OneDrive\Bureau\appbudget111\build\sqflite\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:sqflite] C:\Users\bensa\OneDrive\Bureau\appbudget111\build\sqflite\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:flutter_local_notifications] C:\Users\bensa\OneDrive\Bureau\appbudget111\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:flutter_local_notifications] C:\Users\bensa\OneDrive\Bureau\appbudget111\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:path_provider] C:\Users\bensa\OneDrive\Bureau\appbudget111\build\path_provider\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:path_provider] C:\Users\bensa\OneDrive\Bureau\appbudget111\build\path_provider\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.window:window-java:1.0.0-beta04] C:\Users\bensa\.gradle\caches\transforms-3\c377856ee62ad0ef14c0861a124e3f84\transformed\jetified-window-java-1.0.0-beta04\AndroidManifest.xml:19:5-21:41
 MERGED from [androidx.window:window-java:1.0.0-beta04] C:\Users\bensa\.gradle\caches\transforms-3\c377856ee62ad0ef14c0861a124e3f84\transformed\jetified-window-java-1.0.0-beta04\AndroidManifest.xml:19:5-21:41
 MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\bensa\.gradle\caches\transforms-3\bc6045cc4ccfd8464d87abc6c5778b89\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\bensa\.gradle\caches\transforms-3\bc6045cc4ccfd8464d87abc6c5778b89\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.media:media:1.1.0] C:\Users\bensa\.gradle\caches\transforms-3\14ad6d40be02b0f1c80a028849c44f34\transformed\media-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.media:media:1.1.0] C:\Users\bensa\.gradle\caches\transforms-3\14ad6d40be02b0f1c80a028849c44f34\transformed\media-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\bensa\.gradle\caches\transforms-3\0c46d66dd0777671c248c496b6f75318\transformed\fragment-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\bensa\.gradle\caches\transforms-3\0c46d66dd0777671c248c496b6f75318\transformed\fragment-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\bensa\.gradle\caches\transforms-3\032de68f91d2d212bfb49bd5a1a2a744\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
@@ -124,6 +135,8 @@ MERGED from [androidx.customview:customview:1.0.0] C:\Users\bensa\.gradle\caches
 MERGED from [androidx.customview:customview:1.0.0] C:\Users\bensa\.gradle\caches\transforms-3\06069062a3781625f881552116ce1ad8\transformed\customview-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.core:core:1.6.0] C:\Users\bensa\.gradle\caches\transforms-3\f23b8912808535eaec6feba95b1242f9\transformed\core-1.6.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.core:core:1.6.0] C:\Users\bensa\.gradle\caches\transforms-3\f23b8912808535eaec6feba95b1242f9\transformed\core-1.6.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.jakewharton.threetenabp:threetenabp:1.2.3] C:\Users\bensa\.gradle\caches\transforms-3\83c495226b70fec09e7a1cc7c2e370c2\transformed\jetified-threetenabp-1.2.3\AndroidManifest.xml:5:5-44
+MERGED from [com.jakewharton.threetenabp:threetenabp:1.2.3] C:\Users\bensa\.gradle\caches\transforms-3\83c495226b70fec09e7a1cc7c2e370c2\transformed\jetified-threetenabp-1.2.3\AndroidManifest.xml:5:5-44
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\bensa\.gradle\caches\transforms-3\79f181586ebbd4f57ba6237e9917dfa7\transformed\lifecycle-runtime-2.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\bensa\.gradle\caches\transforms-3\79f181586ebbd4f57ba6237e9917dfa7\transformed\lifecycle-runtime-2.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\bensa\.gradle\caches\transforms-3\e325c78102199d435b8d31b844a2a8dc\transformed\jetified-savedstate-1.0.0\AndroidManifest.xml:20:5-22:41
@@ -134,10 +147,10 @@ MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\bensa\.g
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\bensa\.gradle\caches\transforms-3\f5545cf3d503936457e210d057e1dfe9\transformed\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\bensa\.gradle\caches\transforms-3\e8f2d69cc13c87de30cfd3fafe94ebb5\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\bensa\.gradle\caches\transforms-3\e8f2d69cc13c87de30cfd3fafe94ebb5\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\bensa\.gradle\caches\transforms-3\01991162bf653514f6f03f5170ee0b2d\transformed\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\bensa\.gradle\caches\transforms-3\01991162bf653514f6f03f5170ee0b2d\transformed\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\bensa\.gradle\caches\transforms-3\0c928071fb38cbd52f7c51f849739ea1\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\bensa\.gradle\caches\transforms-3\0c928071fb38cbd52f7c51f849739ea1\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\bensa\.gradle\caches\transforms-3\01991162bf653514f6f03f5170ee0b2d\transformed\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\bensa\.gradle\caches\transforms-3\01991162bf653514f6f03f5170ee0b2d\transformed\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\bensa\.gradle\caches\transforms-3\97d57405cb102c38a50669c0384c7167\transformed\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\bensa\.gradle\caches\transforms-3\97d57405cb102c38a50669c0384c7167\transformed\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\bensa\.gradle\caches\transforms-3\656a3bf9cd1f085c4cc1a3e61d841f93\transformed\jetified-annotation-experimental-1.1.0\AndroidManifest.xml:20:5-22:41
@@ -154,6 +167,44 @@ uses-permission#android.permission.INTERNET
 ADDED from C:\Users\bensa\OneDrive\Bureau\appbudget111\android\app\src\debug\AndroidManifest.xml:6:5-66
 	android:name
 		ADDED from C:\Users\bensa\OneDrive\Bureau\appbudget111\android\app\src\debug\AndroidManifest.xml:6:22-64
+uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
+ADDED from [:flutter_local_notifications] C:\Users\bensa\OneDrive\Bureau\appbudget111\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-81
+	android:name
+		ADDED from [:flutter_local_notifications] C:\Users\bensa\OneDrive\Bureau\appbudget111\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:9:22-78
+uses-permission#android.permission.VIBRATE
+ADDED from [:flutter_local_notifications] C:\Users\bensa\OneDrive\Bureau\appbudget111\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:10:5-66
+	android:name
+		ADDED from [:flutter_local_notifications] C:\Users\bensa\OneDrive\Bureau\appbudget111\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:10:22-63
+uses-permission#android.permission.USE_FULL_SCREEN_INTENT
+ADDED from [:flutter_local_notifications] C:\Users\bensa\OneDrive\Bureau\appbudget111\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:11:5-81
+	android:name
+		ADDED from [:flutter_local_notifications] C:\Users\bensa\OneDrive\Bureau\appbudget111\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:11:22-78
+receiver#com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver
+ADDED from [:flutter_local_notifications] C:\Users\bensa\OneDrive\Bureau\appbudget111\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:14:9-106
+	android:name
+		ADDED from [:flutter_local_notifications] C:\Users\bensa\OneDrive\Bureau\appbudget111\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:14:19-103
+receiver#com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver
+ADDED from [:flutter_local_notifications] C:\Users\bensa\OneDrive\Bureau\appbudget111\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:15:9-22:20
+	android:name
+		ADDED from [:flutter_local_notifications] C:\Users\bensa\OneDrive\Bureau\appbudget111\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:15:19-107
+intent-filter#action:name:android.intent.action.BOOT_COMPLETED+action:name:android.intent.action.MY_PACKAGE_REPLACED+action:name:android.intent.action.QUICKBOOT_POWERON+action:name:com.htc.intent.action.QUICKBOOT_POWERON
+ADDED from [:flutter_local_notifications] C:\Users\bensa\OneDrive\Bureau\appbudget111\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:16:13-21:29
+action#android.intent.action.BOOT_COMPLETED
+ADDED from [:flutter_local_notifications] C:\Users\bensa\OneDrive\Bureau\appbudget111\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:17:17-79
+	android:name
+		ADDED from [:flutter_local_notifications] C:\Users\bensa\OneDrive\Bureau\appbudget111\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:17:25-76
+action#android.intent.action.MY_PACKAGE_REPLACED
+ADDED from [:flutter_local_notifications] C:\Users\bensa\OneDrive\Bureau\appbudget111\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:18:17-84
+	android:name
+		ADDED from [:flutter_local_notifications] C:\Users\bensa\OneDrive\Bureau\appbudget111\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:18:25-81
+action#android.intent.action.QUICKBOOT_POWERON
+ADDED from [:flutter_local_notifications] C:\Users\bensa\OneDrive\Bureau\appbudget111\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:19:17-82
+	android:name
+		ADDED from [:flutter_local_notifications] C:\Users\bensa\OneDrive\Bureau\appbudget111\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:19:25-79
+action#com.htc.intent.action.QUICKBOOT_POWERON
+ADDED from [:flutter_local_notifications] C:\Users\bensa\OneDrive\Bureau\appbudget111\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:20:17-82
+	android:name
+		ADDED from [:flutter_local_notifications] C:\Users\bensa\OneDrive\Bureau\appbudget111\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:20:25-79
 uses-library#androidx.window.extensions
 ADDED from [androidx.window:window:1.0.0-beta04] C:\Users\bensa\.gradle\caches\transforms-3\bc6045cc4ccfd8464d87abc6c5778b89\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
 	android:required

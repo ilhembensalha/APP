@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:login_with_signup/DatabaseHandler/DbHelper.dart';
 import 'package:login_with_signup/Screens/CategoriePage.dart';
+import 'package:login_with_signup/Screens/homePage.dart';
+import 'package:login_with_signup/Screens/homePage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Comm/comHelper.dart';
@@ -19,6 +22,7 @@ class ObjectifPage extends StatefulWidget {
 
 
 class  _ObjectifPageState extends State<ObjectifPage>{
+     FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
     DbHelper dbHelper;
   // All journals
   List<Map<String, dynamic>> _journals = [];
@@ -26,19 +30,72 @@ class  _ObjectifPageState extends State<ObjectifPage>{
   
 
   bool _isLoading = true;
+  
+ double _total ;
+    double _depense ;
+    double _totaal ;
+     Future onSelectNotification(String payload) async {
+    showDialog(
+      context: context,
+      builder: (_) {
+        return AlertDialog(
+          title: Text("Notification"),
+          content: Text("Payload : $payload"),
+        );
+      },
+    );
+  }
+     Future _showNotification() async {
+    var android = AndroidNotificationDetails(
+        'channel id', 'channel NAME', 'CHANNEL DESCRIPTION',
+        priority: Priority.high, importance: Importance.max);
+    var iOS = IOSNotificationDetails();
+    var platform = NotificationDetails(android: android, iOS: iOS);
+    await flutterLocalNotificationsPlugin.show(
+        0, 'Title', 'Body', platform,
+        payload: 'Custom_Sound');
+  }
+   
   // This function is used to fetch all data from the database
   void _refreshJournals() async {
     final data = await dbHelper.getObj();
+       final sum = await dbHelper.sumField();
+          final dep = await dbHelper.moins();
     setState(() {
       _journals = data;
       _isLoading = false;
+        _total = sum ;
+      _depense = dep ;
+      if(_total != null && _depense != null ){
+      _totaal = _total  -  _depense;
+      }else if(_depense != null ){
+        _totaal = 0 -_depense;
+        _total = 0;
+      }else if(_total != null)  {
+     _totaal = _total;
+     _depense =0;
+      }
+      else if(_total == null &&_depense == null )  {
+     _totaal = 0;
+     _total = 0 ;
+     _depense = 0 ;
+      }
     });
   }
 
   @override
   void initState() {
     super.initState();
-        dbHelper = DbHelper();
+        dbHelper = DbHelper() ;
+          var initializationSettingsAndroid =
+        AndroidInitializationSettings('app_icon');
+    var initializationSettingsIOS = IOSInitializationSettings();
+    var initializationSettings = InitializationSettings(
+        android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
+    flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+    flutterLocalNotificationsPlugin.initialize(initializationSettings,
+        onSelectNotification: onSelectNotification);
+   
     _refreshJournals(); // Loading the diary when the app starts
   }
 

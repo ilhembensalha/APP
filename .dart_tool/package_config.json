@@ -74,6 +74,18 @@
       "languageVersion": "2.17"
     },
     {
+      "name": "flutter_local_notifications",
+      "rootUri": "file:///C:/Users/bensa/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_local_notifications-4.0.1+2",
+      "packageUri": "lib/",
+      "languageVersion": "2.6"
+    },
+    {
+      "name": "flutter_local_notifications_platform_interface",
+      "rootUri": "file:///C:/Users/bensa/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_local_notifications_platform_interface-2.0.0+1",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
+    },
+    {
       "name": "flutter_test",
       "rootUri": "file:///C:/Users/bensa/flutter/packages/flutter_test",
       "packageUri": "lib/",
@@ -278,6 +290,12 @@
       "languageVersion": "2.18"
     },
     {
+      "name": "timezone",
+      "rootUri": "file:///C:/Users/bensa/AppData/Local/Pub/Cache/hosted/pub.dev/timezone-0.6.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
+    },
+    {
       "name": "toast",
       "rootUri": "file:///C:/Users/bensa/AppData/Local/Pub/Cache/hosted/pub.dev/toast-0.1.5",
       "packageUri": "lib/",
@@ -308,7 +326,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2023-04-27T14:04:03.687758Z",
+  "generated": "2023-04-29T21:43:29.750948Z",
   "generator": "pub",
   "generatorVersion": "2.19.0"
 }

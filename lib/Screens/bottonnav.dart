@@ -147,7 +147,7 @@ class _NavState extends State<Nav> {
               color:Colors.black,
             ),
             label: 
-              'stat2',
+              'stat',
              
           )
         ],
