@@ -322,4 +322,26 @@ final de = await dbClient.rawQuery('SELECT SUM(prix) FROM transactions  WHERE ty
     }
 }
 
+
+
+
+
+
+Future<List<Map<String, dynamic>>> getTranByDate(DateTime date) async {
+  var dbClient = await db;
+  final String formattedDate = '${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}';
+
+  final List<Map<String, dynamic>> result = await dbClient.rawQuery(
+    'SELECT * FROM transactions WHERE date = ?',
+    [formattedDate],
+  );
+
+  return result;
+}
+ Future<List<Map<String, dynamic>>> gettr() async {
+    var dbClient = await db;
+      List<Map<String, dynamic>> transactions = await dbClient.query('transactions');
+  return transactions;
+  }
+
 }

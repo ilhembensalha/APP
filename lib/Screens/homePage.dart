@@ -10,6 +10,7 @@ import 'package:login_with_signup/Screens/navigation.dart' as drawer;
 import '../Comm/comHelper.dart';
 import 'CategoriePage.dart';
 import 'HomeForm.dart';
+import 'package:table_calendar/table_calendar.dart';
 import 'LoginForm.dart';
 
 
@@ -32,7 +33,7 @@ class  _HomePageState extends State<HomePage>{
    List<Map<String, dynamic>> _id_caController  = [] ;
      Future<SharedPreferences> _pref = SharedPreferences.getInstance();
     String dropdownvalue = 'revenu ';
-      int _prix = 0;
+       bool _showMontantTextField = false ;
 
   var items = [
     'revenu',
@@ -63,7 +64,7 @@ class  _HomePageState extends State<HomePage>{
     var iOS = IOSNotificationDetails();
     var platform = NotificationDetails(android: android, iOS: iOS);
     await flutterLocalNotificationsPlugin.show(
-        0, 'Title', 'Body', platform,
+        0, 'Alerte', 'vos revenus et vos dépenses sont égaux', platform,
         payload: 'Custom_Sound');
   }
    
@@ -120,23 +121,15 @@ class  _HomePageState extends State<HomePage>{
   String data = await dbHelper.getTotalMontant();
   print(data);
 }*/
- void _increment() {
-    setState(() {
-      _prix++;
-    });
-  }
-
-  void _decrement() {
-    setState(() {
-      if (_prix > 0) {
-        _prix--;
-      }
-    });
-  }
 
   @override
   void initState() {
     super.initState();
+     _calendarFormat = CalendarFormat.month;
+    _focusedDay = DateTime.now();
+    _selectedDay = DateTime.now();
+    _events = {};
+    _loadTransactions();
         dbHelper = DbHelper();
             var initializationSettingsAndroid =
         AndroidInitializationSettings('app_icon');
@@ -146,8 +139,42 @@ class  _HomePageState extends State<HomePage>{
     flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
     flutterLocalNotificationsPlugin.initialize(initializationSettings,
         onSelectNotification: onSelectNotification);
+       bool _showMontantTextField = false;
     _refreshJournals(); // Loading the diary when the app starts
   }
+  CalendarFormat _calendarFormat;
+  DateTime _focusedDay;
+  DateTime _selectedDay;
+  Map<DateTime, List<dynamic>> _events;
+ 
+
+
+  Future<void> _loadTransactions() async {
+    DbHelper dbHelper = DbHelper();
+    List<Map<String, dynamic>> transactions = await dbHelper.gettr();
+
+    for (var transaction in transactions) {
+      final date = DateTime.parse(transaction['date']);
+      setState(() {
+        if (_events.containsKey(date)) {
+          _events[date].add(date);
+        } else {
+          _events[date] = [date];
+        }
+      });
+    }
+
+    setState(() {
+      _isLoading = false;
+    });
+
+    print(_events);
+  }
+
+  List<dynamic> _getEventsForDay(DateTime day) {
+    return _events[day] ?? [];
+  }
+
 
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
@@ -156,224 +183,180 @@ class  _HomePageState extends State<HomePage>{
   var   _catController ;
    // ignore: non_constant_identifier_names
 
-   
-  // This function will be triggered when the floating button is pressed
-  // It will also be triggered when you want to update an item
-  void _showForm(int  id) async {
-    if (id != null) {
-      // id == null -> create new item
-      // id != null -> update an existing item
-      final existingJournal =
-      _journals.firstWhere((element) => element['id'] == id);
-      _nameController.text = existingJournal['name'];
-      _prixController.text = existingJournal['prix'].toString();
-      _descriptionController.text = existingJournal['description'];
-      _typeTransController=existingJournal['typeTrans']; 
-      _catController=existingJournal['id_cat'];
+ void _showForm(int id) async {
+  if (id != null) {
+    final existingJournal =
+        _journals.firstWhere((element) => element['id'] == id);
+    _nameController.text = existingJournal['name'];
+    _prixController.text = existingJournal['prix'].toString();
+    _descriptionController.text = existingJournal['description'];
+    _typeTransController = existingJournal['typeTrans'];
+    _catController = existingJournal['id_cat'];
+  }
 
-    }
-
-    showModalBottomSheet(
-        context: context,
-        elevation: 5,
-        isScrollControlled: true,
-        builder: (_) => Container(
-          padding: EdgeInsets.only(
-            top: 15,
-            left: 15,
-            right: 15,
-            // this will prevent the soft keyboard from covering the text fields
-            bottom: MediaQuery.of(context).viewInsets.bottom + 120,
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              TextField(
-                controller: _nameController,
-                decoration: const InputDecoration(hintText: 'name'),
-              ),           const SizedBox(
-                height: 20,
-              ),
-                 Row(   
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('Categorie'),DropdownButton(
-value: _catController,
-icon: Icon(Icons.keyboard_arrow_down),
-onChanged: (newValue) {
-setState(() {
-_catController = newValue;
-});
-},
-items: _id_caController.map((category) {
-return DropdownMenuItem(
-value: category['id_cat'],
-child: Text(category['name']),
-);
-}).toList(),
-),
- ],
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              TextField(
-                controller: _descriptionController,
-
-                decoration: const InputDecoration(hintText: 'Description'),
-              ),
-              
-   
-
-                     const SizedBox(
-                height: 20,
-              ),
-
-              Column(
-  children: [
-     Text('Type :'),
-      
-      RadioListTile(
-          title: Text("depense"),
-          value: "depense", 
-          groupValue: _typeTransController, 
-          onChanged: (value){
-            setState(() {
-                _typeTransController = value.toString();
-            });
-          },
+  showModalBottomSheet(
+    context: context,
+    elevation: 5,
+    isScrollControlled: true,
+    builder: (_) => Container(
+      padding: EdgeInsets.only(
+        top: 15,
+        left: 15,
+        right: 15,
+        bottom: MediaQuery.of(context).viewInsets.bottom + 120,
       ),
-
-      RadioListTile(
-          title: Text("revenu"),
-          value: "revenu", 
-          groupValue: _typeTransController, 
-          onChanged: (value){
-            setState(() {
-                _typeTransController = value.toString();
-            });
-          },
-      ),]),
-           /*   Row(   
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('Type'),
-                   DropdownButton(
-                value: _typeTransController  ,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          TextField(
+            controller: _nameController,
+            decoration: const InputDecoration(hintText: 'name'),
+          ),
+          const SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text('Categorie'),
+              DropdownButton(
+                value: _catController,
                 icon: Icon(Icons.keyboard_arrow_down),
-                items: items.map((items) {
-                  return DropdownMenuItem(value: items, child: Text(items));
-                }).toList(),
                 onChanged: (newValue) {
                   setState(() {
-                    _typeTransController = newValue;
+                    _catController = newValue;
+                  });
+                },
+                items: _id_caController.map((category) {
+                  return DropdownMenuItem(
+                    value: category['id_cat'],
+                    child: Text(category['name']),
+                  );
+                }).toList(),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          TextField(
+            controller: _descriptionController,
+            decoration: const InputDecoration(hintText: 'Description'),
+          ),
+          const SizedBox(height: 20),
+          Column(
+            children: [
+              RadioListTile(
+                title: Text("Dépense"),
+                value: "depense",
+                groupValue: _typeTransController,
+                onChanged: (value) {
+                  setState(() {
+                    _typeTransController = value.toString();
+                    _showMontantTextField = false;
+                   _prixController.text = '';
                   });
                 },
               ),
-                ],
-              ),*/
-              const SizedBox(
-                height: 20,
-              ),/*TextField(
-                controller: _prixController,
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(hintText: 'montant'),
-
-              ), */ Row(
-      children: [
-        ElevatedButton(
-          onPressed: _decrement,
-          child: Text('-'),
-        ),
-        SizedBox(width: 10),
-        Expanded(
-          child: TextField(
-            keyboardType: TextInputType.number,
-            textAlign: TextAlign.center,
-            controller: TextEditingController(text: _prix.toString()),
-            onChanged: (value) { 
-              setState(() {
-                _prix = int.tryParse(value) ?? 0;
-              });
-            },
-          ),
-        ),
-        SizedBox(width: 10),
-        ElevatedButton(
-          onPressed: _increment,
-          child: Text('+'),
-        ),
-      ],
-    ),
-           
-               const SizedBox(
-                height: 20,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              ElevatedButton(
-                style: ButtonStyle(
-    fixedSize: MaterialStateProperty.all(Size(400, 50)),
-  ),
-                onPressed: () async {
-                  // Save new journal
-                  if (id == null) {
-        if (_nameController.text.isEmpty) {
-      alertDialog(context, "Please Enter name");
-    } else if (_descriptionController.text.isEmpty) {
-      alertDialog(context, "Please Enter description");
-      
-    }  else if (_prix == null) {
-      alertDialog(context, "Please Enter montant");
-      
-    }else {
-                    await _addItem();
-       }
-          }
-
-                  if (id != null) {
-                     if (_nameController.text.isEmpty) {
-      alertDialog(context, "Please Enter name");
-    } else if (_descriptionController.text.isEmpty) {
-      alertDialog(context, "Please Enter description");
-      
-    }  else if (_prixController.text.isEmpty) {
-      alertDialog(context, "Please Enter montant");
-      
-    } else {
-                    await _updateItem(id);
-     }
-      }
-
-                  // Clear the text fields
-                  _nameController.text = '';
-                  _descriptionController.text = '';
-                  _prixController.text = '';
-              
-
-                  // Close the bottom sheet
-                  Navigator.of(context).pop();
+              RadioListTile(
+                title: Text("Revenu"),
+                value: "revenu",
+                groupValue: _typeTransController,
+                onChanged: (value) {
+                  setState(() {
+                    _typeTransController = value.toString();
+                    _showMontantTextField = false;
+                   _prixController.text = '';
+                  });
                 },
-                child: Text(id == null ? 'Create New' : 'Update'),
-              )
+              ),
+              if (_typeTransController == "depense")
+                Row(
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          _showMontantTextField = true;
+                         // _prixController.text = '';
+                        });
+                      },
+                      child: Text('Manuel'),
+                    ),
+                    SizedBox(width: 10),
+                    ElevatedButton(
+                      onPressed: () {
+                        // Perform action for "Automatique" button
+                      },
+                      child: Text('Automatique'),
+                    ),
+                  ],
+                ),
+              if (_typeTransController == "revenu" || _showMontantTextField)
+                TextField(
+                  controller: _prixController,
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(hintText: 'Montant'),
+                ),
             ],
           ),
-        ));
-  }
+        /*  const SizedBox(height: 20), TextField(
+                  controller: _prixController,
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(hintText: 'Montant'),
+                ),*/
+          const SizedBox(height: 10),
+          ElevatedButton(
+            style: ButtonStyle(
+              fixedSize: MaterialStateProperty.all(Size(400, 50)),
+            ),
+            onPressed: () async {
+              if (id == null) {
+                if (_nameController.text.isEmpty) {
+                  alertDialog(context, "Please enter name");
+                } else if (_descriptionController.text.isEmpty) {
+                  alertDialog(context, "Please enter description");
+                } else if (_prixController.text.isEmpty) {
+                  alertDialog(context, "Please enter montant");
+                } else {
+                  await _addItem();
+                }
+              }
+
+              if (id != null) {
+                if (_nameController.text.isEmpty) {
+                  alertDialog(context, "Please enter name");
+                } else if (_descriptionController.text.isEmpty) {
+                  alertDialog(context, "Please enter description");
+                } else if (_prixController.text.isEmpty) {
+                  alertDialog(context, "Please enter montant");
+                } else {
+                  await _updateItem(id);
+                }
+              }
+
+              _nameController.text = '';
+              _descriptionController.text = '';
+              _prixController.text = '';
+
+              Navigator.of(context).pop();
+            },
+            child: Text(id == null ? 'Create New' : 'Update'),
+          )
+        ],
+      ),
+    ),
+  );
+}
+
 
 // Insert a new journal to the database
   Future<void> _addItem() async {
     await  dbHelper.createTran(
-        _nameController.text, _descriptionController.text,_prix.toString(),_typeTransController,_catController );
+        _nameController.text, _descriptionController.text,_prixController.text,_typeTransController,_catController );
     _refreshJournals();
   }
 
   // Update an existing journal
   Future<void> _updateItem(int id) async {
     await dbHelper.updateTran(
-        id,_nameController.text, _descriptionController.text,_prix.toString(),_typeTransController,_catController );
+        id,_nameController.text, _descriptionController.text,_prixController.text,_typeTransController,_catController );
     _refreshJournals();
   }
 
@@ -388,14 +371,99 @@ child: Text(category['name']),
 
 
 
-
   @override
-
   Widget build(BuildContext context) {
-     Future<SharedPreferences> _pref = SharedPreferences.getInstance();
-    return Scaffold(
-  
-            body:_isLoading
+      Future<SharedPreferences> _pref = SharedPreferences.getInstance();
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          appBar: 
+             TabBar(
+              indicatorColor: Color.fromARGB(255, 98, 135, 208),
+              tabs: [
+                Tab(
+                text: 'Calandar',
+                ),
+                Tab(text: 'Liste',),
+              ],
+                labelColor: Colors.blue,
+            ),
+          
+          body: TabBarView(
+            children: [
+              Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Container(
+                  child: _isLoading
+          ? Center(
+              child: CircularProgressIndicator(),
+            )
+          : TableCalendar(
+              calendarFormat: _calendarFormat,
+              focusedDay: _focusedDay,
+              firstDay: DateTime.utc(2010, 1, 1),
+              lastDay: DateTime.utc(2030, 12, 31),
+              eventLoader: _getEventsForDay,
+              startingDayOfWeek: StartingDayOfWeek.monday,
+              calendarStyle: CalendarStyle(
+                selectedDecoration: BoxDecoration(
+                  color: Colors.blue,
+                  shape: BoxShape.circle,
+                ),
+                todayDecoration: BoxDecoration(
+                  color: Colors.yellow,
+                  shape: BoxShape.circle,
+                ),
+              ),
+              headerStyle: HeaderStyle(
+                titleTextStyle: TextStyle(fontSize: 20),
+              ),
+              onFormatChanged: (format) {
+                setState(() {
+                  _calendarFormat = format;
+                });
+              },
+              onDaySelected: (selectedDay, focusedDay) {
+                setState(() {
+                  _selectedDay = selectedDay;
+                  _focusedDay = focusedDay;
+                  _showTransactionsDialog(context, selectedDay);
+                });
+              },
+              calendarBuilders: CalendarBuilders(
+                defaultBuilder: (context, date, focusedDay) {
+                  if (_events.containsKey(date)) {
+                    for (DateTime d in _events[date]) {
+                      if (isSameDay(date, d)) {
+                        return Container(
+                          decoration: BoxDecoration(
+                            color: _getEventColor('revenu'), // Replace with your logic for getting the event type
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(8.0),
+                            ),
+                          ),
+                          child: Center(
+                            child: Text(
+                              '${date.day}',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        );
+                      }
+                    }
+                  }
+                  return null;
+                },
+              ),
+            ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Container(
+                  child: _isLoading
                ? const Center(
              child: CircularProgressIndicator(),
            )
@@ -489,18 +557,72 @@ leading: _id_caController.map((category) => category['id_cat'] == _journals[inde
            ),
         ],
       ),
-                      
-           
-     
-                
-                       
-      floatingActionButton: FloatingActionButton(
+                                   
+      
+                ),
+              ),
+             
+            ],
+            
+          ),
+          floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () => _showForm(null),
       ),
-         
-          );
+        ),
+      ),
+    );
+  }
 
+
+ bool isSameDay(DateTime date1, DateTime date2) {
+    return date1.year == date2.year &&
+        date1.month == date2.month &&
+        date1.day == date2.day;
+  }
+
+  Color _getEventColor(String typeTrans) {
+    if (typeTrans == 'revenu') {
+      return Colors.lightGreen;
+    } else if (typeTrans == 'depense') {
+      return Colors.red;
+    } else {
+      return Colors.grey;
+    }
+  }
+
+  void _showTransactionsDialog(BuildContext context, DateTime selectedDay) async {
+    DbHelper dbHelper = DbHelper();
+    List<Map<String, dynamic>> transactions = await dbHelper.getTranByDate(selectedDay);
+
+    List<dynamic> transactionDescriptions =
+        transactions.map((transaction) => transaction['name']).toList();
+
+    showDialog(
+      context: context,
+      builder: (BuildContext dialogContext) {
+        return AlertDialog(
+          title: Text('Transactions - $selectedDay'),
+          content: SingleChildScrollView(
+            child: Column(
+              children: transactionDescriptions.map((transaction) {
+                return ListTile(
+                  title: Text(transaction),
+                );
+              }).toList(),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(dialogContext).pop();
+              },
+              child: Text('Close'),
+            ),
+          ],
+        );
+      },
+    );
   }
  
 }
